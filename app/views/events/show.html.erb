@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @event.content %>
+</p>
+
+<div id="like-link">
+<%= render 'likes/like_links', event: @event %>
+</div>
+
+<div>
+  <small>
+    <%= link_to @event.likes.count, liking_users_event_path(@event.id), id:"like-count", remote: true %>人がいいね！といっています
+  </small>
+</div>
+
+<% if current_user?(@event.user) %>
+  <%= link_to 'Edit', edit_event_path(@event.id) %> |
+<% end %>
+<%= link_to 'Back', :back %>

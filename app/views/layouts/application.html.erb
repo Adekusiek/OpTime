@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Optime</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <div id="logo"><li><%= link_to "OpTime", root_path %></li></div>
+      <% if !user_signed_in? %>
+        <ul class="header-right">
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "このサイトについて", about_path %></li>
+        </ul>
+      <% else %>
+        <ul class="header-right">
+          <li><%= link_to "Event", new_event_path %></li>
+          <li><%= link_to "Recommendation", "#" %></li>
+          <li><%= link_to "About User", user_path(current_user.id) %></li>
+          <li><%= link_to "=>Professional", "#" %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <% end %>
+    </div>
+  </header>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="container">
+    <footer class="footer">
+      <div class="small">
+        &copy; 2016 OpTime, Inc. -Keisuke Kawahara-
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

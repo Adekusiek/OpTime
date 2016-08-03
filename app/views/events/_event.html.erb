@@ -1,0 +1,12 @@
+<li>
+  <%= image_for(event.user) %>
+  <span class="user-name">
+    <%= event.user.name %>
+  </span>
+  <span class="content">
+    <%= link_to event.title, event_path(event.id) %>
+  </span>
+  <span>
+    <%= event.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </span>
+</li>
