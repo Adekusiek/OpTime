@@ -11,7 +11,26 @@
     <h3><%= @user.city %></h3>
     <span class="label">About</span>
     <h3><%= @user.about %></h3>
+    <h2>Friends</h2>
+    <ul>
+      <% @user.friends.each do |friend| %>
+        <li>
+          <%= friend.name %>
+          <%= link_to "remove", friendship_path(friend_id: friend), method: :delete %>
+        </li>
+      <% end %>
+    </ul>
+
+    <p><%= link_to "Find Friends", users_path %></p>
+
+    <h2>Friended by Users</h2>
+    <ul>
+      <% @user.inverse_friends.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
   </div>
+
   <% if current_user?(@user) %>
     <%= link_to 'Edit', edit_user_path(@user), {class: "btn edit-btn"} %>
   <% end %>

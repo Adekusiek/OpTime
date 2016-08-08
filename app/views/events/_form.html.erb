@@ -21,13 +21,6 @@
     <%= f.text_area :content %>
   </div>
 
-  <% userArray=User.all.select{|u| u.name unless u==current_user }%>
-  <% names=userArray.map{|u| u.name} %>
-  <div>
-    <%= f.label :user %>
-    <%= f.check_box :user, names, {multiple: true} %>
-  </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   devise_for :users
 
   resources :events, only: [:new, :show, :create, :edit, :update, :destroy]do
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]do
     member do
       get :like_events
+
     end
   end
 
@@ -18,4 +21,8 @@ Rails.application.routes.draw do
 
   post 'like/:event_id' => 'likes#like', as: 'like'
   delete 'unlike/:event_id' => 'likes#unlike', as: 'unlike'
+
+  post 'friendship' => 'friendships#create'
+  delete 'friendship' => 'friendships#destroy'
+  
 end
